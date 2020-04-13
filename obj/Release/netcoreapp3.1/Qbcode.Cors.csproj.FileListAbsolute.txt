@@ -1,0 +1,8 @@
+C:\绿色\projects\service.core30\api.core\Qbcode.Cors\bin\Release\netcoreapp3.1\Qbcode.Cors.deps.json
+C:\绿色\projects\service.core30\api.core\Qbcode.Cors\bin\Release\netcoreapp3.1\Qbcode.Cors.dll
+C:\绿色\projects\service.core30\api.core\Qbcode.Cors\bin\Release\netcoreapp3.1\Qbcode.Cors.pdb
+C:\绿色\projects\service.core30\api.core\Qbcode.Cors\obj\Release\netcoreapp3.1\Qbcode.Cors.AssemblyInfoInputs.cache
+C:\绿色\projects\service.core30\api.core\Qbcode.Cors\obj\Release\netcoreapp3.1\Qbcode.Cors.AssemblyInfo.cs
+C:\绿色\projects\service.core30\api.core\Qbcode.Cors\obj\Release\netcoreapp3.1\Qbcode.Cors.dll
+C:\绿色\projects\service.core30\api.core\Qbcode.Cors\obj\Release\netcoreapp3.1\Qbcode.Cors.pdb
+C:\绿色\projects\service.core30\api.core\Qbcode.Cors\obj\Release\netcoreapp3.1\Qbcode.Cors.csprojAssemblyReference.cache

@@ -1,0 +1,11 @@
+C:\绿色\projects\service.core30\api.core\Bumblebee.Cors.qbcode\bin\Release\netcoreapp2.1\Bumblebee.Cors.qbcode.deps.json
+C:\绿色\projects\service.core30\api.core\Bumblebee.Cors.qbcode\bin\Release\netcoreapp2.1\Bumblebee.Cors.qbcode.dll
+C:\绿色\projects\service.core30\api.core\Bumblebee.Cors.qbcode\bin\Release\netcoreapp2.1\Bumblebee.Cors.qbcode.pdb
+C:\绿色\projects\service.core30\api.core\Bumblebee.Cors.qbcode\bin\Release\netcoreapp2.1\Bumblebee.dll
+C:\绿色\projects\service.core30\api.core\Bumblebee.Cors.qbcode\bin\Release\netcoreapp2.1\Bumblebee.pdb
+C:\绿色\projects\service.core30\api.core\Bumblebee.Cors.qbcode\obj\Release\netcoreapp2.1\Bumblebee.Cors.qbcode.csprojAssemblyReference.cache
+C:\绿色\projects\service.core30\api.core\Bumblebee.Cors.qbcode\obj\Release\netcoreapp2.1\Bumblebee.Cors.qbcode.AssemblyInfoInputs.cache
+C:\绿色\projects\service.core30\api.core\Bumblebee.Cors.qbcode\obj\Release\netcoreapp2.1\Bumblebee.Cors.qbcode.AssemblyInfo.cs
+C:\绿色\projects\service.core30\api.core\Bumblebee.Cors.qbcode\obj\Release\netcoreapp2.1\Bumblebee.Cors.qbcode.csproj.CopyComplete
+C:\绿色\projects\service.core30\api.core\Bumblebee.Cors.qbcode\obj\Release\netcoreapp2.1\Bumblebee.Cors.qbcode.dll
+C:\绿色\projects\service.core30\api.core\Bumblebee.Cors.qbcode\obj\Release\netcoreapp2.1\Bumblebee.Cors.qbcode.pdb
