@@ -67,12 +67,13 @@ namespace Qbcode.Cors
 
         public void Execute(EventRequestingArgs e)
         {
-            e.Response.Header["qbcode-cors"] = "qbcode.cn";
+            //mGateway.HttpServer.Log(BeetleX.EventArgs.LogType.Error, "444");
+            //e.Response.Header["qbcode-cors"] = "qbcode.cn";
             if (setting.Enabled == false)
             {
                 return;
             }
-
+            e.Response.Header["qbcode-cors"] = "qbcode.cn";
             if (!string.IsNullOrWhiteSpace(e.Request.Header["Origin"]))
             {
                 if (!setting.Origin.Any() || setting.Origin.IndexOf(e.Request.Header["Origin"]) >= 0)
@@ -107,7 +108,6 @@ namespace Qbcode.Cors
             }
 
         }
-
         public void Init(Gateway gateway, Assembly assembly)
         {
             this.mGateway = gateway;
@@ -126,6 +126,7 @@ namespace Qbcode.Cors
         {
             return this.setting;
         }
+
 
 
         private Gateway mGateway;

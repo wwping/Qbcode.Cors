@@ -40,11 +40,11 @@
           "dependencies": {
             "BeetleX.Bumblebee": {
               "target": "Package",
-              "version": "[1.3.6.6, )"
+              "version": "[1.3.6.7, )"
             },
             "BeetleX.Http.Clients": {
               "target": "Package",
-              "version": "[1.2.4.6, )"
+              "version": "[1.2.5.8, )"
             }
           },
           "imports": [
