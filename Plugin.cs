@@ -67,39 +67,54 @@ namespace Qbcode.Cors
 
         public void Execute(EventRequestingArgs e)
         {
-            //mGateway.HttpServer.Log(BeetleX.EventArgs.LogType.Error, "444");
-            //e.Response.Header["qbcode-cors"] = "qbcode.cn";
             if (setting.Enabled == false)
             {
                 return;
             }
             e.Response.Header["qbcode-cors"] = "qbcode.cn";
+            e.Response.Header["Gateway"] = "qbcode.cn";
+            e.Response.Header["Server"] = "qbcode.cn";
             if (!string.IsNullOrWhiteSpace(e.Request.Header["Origin"]))
             {
-                if (!setting.Origin.Any() || setting.Origin.IndexOf(e.Request.Header["Origin"]) >= 0)
+                if (setting.Origin.Length > 0)
                 {
-                    e.Response.Header["Access-Control-Allow-Origin"] = e.Request.Header["Origin"];
+                    if (setting.Origin != "*")
+                    {
+                        e.Response.Header["Access-Control-Allow-Origin"] = setting.Origin;
+                        e.Response.Header["Vary"] = setting.Vary;
+                    }
+                    else
+                    {
+                        e.Response.Header["Access-Control-Allow-Origin"] = e.Request.Header["Origin"];
+                    }
                 }
-                if (!setting.Methods.Any())
+                if (setting.Methods.Length > 0)
                 {
-                    e.Response.Header["Access-Control-Allow-Methods"] = e.Request.Method;
+                    e.Response.Header["Access-Control-Allow-Methods"] = setting.Methods;
+                }
+                mGateway.HttpServer.Log(BeetleX.EventArgs.LogType.Error, "Headers:" + setting.Headers);
+                if (setting.Headers.Length > 0)
+                {
+                    e.Response.Header["Access-Control-Allow-Headers"] = setting.Headers;
+                }
+
+                if (setting.Credentials)
+                {
+                    e.Response.Header["Access-Control-Allow-Credentials"] = "true";
                 }
                 else
                 {
-                    e.Response.Header["Access-Control-Allow-Methods"] = string.Join(",", e.Request.Method);
+                    e.Response.Header["Access-Control-Allow-Credentials"] = "false";
                 }
-                if (!setting.Headers.Any())
+
+                if (setting.MaxAge > 0)
                 {
-                    e.Response.Header["Access-Control-Allow-Headers"] = e.Request.Header["Access-Control-Request-Headers"];
+                    e.Response.Header["Access-Control-Max-Age"] = setting.MaxAge.ToString();
                 }
-                else
-                {
-                    e.Response.Header["Access-Control-Allow-Headers"] = string.Join(",", e.Request.Header["Access-Control-Request-Headers"]);
-                }
-                e.Response.Header["Access-Control-Allow-Credentials"] = setting.Credentials;
+
             }
 
-            if (e.Request.Method.Equals("OPTIONS"))
+            if (string.Compare(e.Request.Method, "OPTIONS", true) == 0)
             {
                 e.Cancel = true;
                 e.ResultType = ResultType.Completed;
@@ -108,6 +123,7 @@ namespace Qbcode.Cors
             }
 
         }
+
         public void Init(Gateway gateway, Assembly assembly)
         {
             this.mGateway = gateway;
@@ -119,32 +135,88 @@ namespace Qbcode.Cors
         {
             if (setting != null)
             {
-                this.setting = setting.ToObject<SettingInfo>();
+                var _setting = setting.ToObject<SettingInfo>();
+
+                if (_setting.Origin.Length == 0)
+                {
+                    _setting.Origin = new string[] { "*" };
+                }
+                if (_setting.Headers.Length == 0)
+                {
+                    _setting.Headers = new string[] { "*" };
+                }
+
+                if (_setting.Methods.Length == 0)
+                {
+                    _setting.Methods = new string[] { "*" };
+                }
+
+                this.setting = new SettingInfo2
+                {
+                    Credentials = _setting.Credentials,
+                    Enabled = _setting.Enabled,
+                    Headers = string.Join(",", _setting.Headers),
+                    MaxAge = _setting.MaxAge,
+                    Origin = string.Join(",", _setting.Origin),
+                    Methods = string.Join(",", _setting.Methods),
+                    Vary = _setting.Vary
+                };
             }
         }
         public object SaveSetting()
         {
-            return this.setting;
+            return new SettingInfo
+            {
+                Credentials = this.setting.Credentials,
+                Enabled = this.setting.Enabled,
+                Headers = this.setting.Headers.Split(','),
+                MaxAge = this.setting.MaxAge,
+                Methods = this.setting.Methods.Split(','),
+                Origin = this.setting.Origin.Split(','),
+                Vary = this.setting.Vary,
+            };
         }
-
-
 
         private Gateway mGateway;
 
-        private SettingInfo setting = new SettingInfo();
+        private SettingInfo2 setting = new SettingInfo2();
     }
 
     public class SettingInfo
     {
         public bool Enabled { get; set; } = true;
 
-        public List<string> Origin { get; set; } = new List<string>();
-        public string Credentials { get; set; } = "true";
-        public string MaxAge { get; set; } = "1800";
-        public List<string> Methods { get; set; } = new List<string>();
-        public List<string> Headers { get; set; } = new List<string>();
+        public string[] Origin { get; set; } = new string[] { "*" };
+
+        public bool Credentials { get; set; } = true;
+
+        public int MaxAge { get; set; } = 1800;
+
+        public string[] Methods { get; set; } = new string[] { "get", "post" };
+
+        public string[] Headers { get; set; } = new string[] { };
+
+        public string Vary { get; set; } = "Origin";
+
 
         public string Message { get; } = "当为空时，则允许全部";
+    }
+
+    public class SettingInfo2
+    {
+        public bool Enabled { get; set; } = true;
+
+        public string Origin { get; set; } = string.Empty;
+
+        public bool Credentials { get; set; } = true;
+
+        public int MaxAge { get; set; } = 1800;
+
+        public string Methods { get; set; } = string.Empty;
+
+        public string Headers { get; set; } = string.Empty;
+
+        public string Vary { get; set; } = "Origin";
     }
 
 }

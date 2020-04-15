@@ -6,3 +6,6 @@ C:\绿色\projects\service.core30\api.core\Qbcode.Cors\obj\Release\netcoreapp3.1
 C:\绿色\projects\service.core30\api.core\Qbcode.Cors\obj\Release\netcoreapp3.1\Qbcode.Cors.dll
 C:\绿色\projects\service.core30\api.core\Qbcode.Cors\obj\Release\netcoreapp3.1\Qbcode.Cors.pdb
 C:\绿色\projects\service.core30\api.core\Qbcode.Cors\obj\Release\netcoreapp3.1\Qbcode.Cors.csprojAssemblyReference.cache
+C:\绿色\projects\service.core30\api.core\Qbcode.Cors\bin\Release\netcoreapp3.1\Bumblebee.dll
+C:\绿色\projects\service.core30\api.core\Qbcode.Cors\bin\Release\netcoreapp3.1\Bumblebee.pdb
+C:\绿色\projects\service.core30\api.core\Qbcode.Cors\obj\Release\netcoreapp3.1\Qbcode.Cors.csproj.CopyComplete
