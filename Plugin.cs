@@ -92,10 +92,17 @@ namespace Qbcode.Cors
                 {
                     e.Response.Header["Access-Control-Allow-Methods"] = setting.Methods;
                 }
-                mGateway.HttpServer.Log(BeetleX.EventArgs.LogType.Error, "Headers:" + setting.Headers);
+                // mGateway.HttpServer.Log(BeetleX.EventArgs.LogType.Error, "Headers:" + setting.Headers);
                 if (setting.Headers.Length > 0)
                 {
-                    e.Response.Header["Access-Control-Allow-Headers"] = setting.Headers;
+                    if (setting.Headers == "*")
+                    {
+                        e.Response.Header["Access-Control-Allow-Headers"] = e.Request.Header["Access-Control-Request-Headers"];
+                    }
+                    else
+                    {
+                        e.Response.Header["Access-Control-Allow-Headers"] = setting.Headers;
+                    }
                 }
 
                 if (setting.Credentials)
